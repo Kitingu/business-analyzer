@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import ErrorHandler from './src/utils/error-handler';
 import {handleError,handleSuccess} from './src/utils/response'
 import authRoutes from './src/routes/auth'
+import fileRoutes from './src/routes/files';
 import logger from './src/utils/logger';
 const app = express();
 
@@ -10,12 +11,13 @@ const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(authRoutes)
+app.use(fileRoutes);
 
 app.use((req, res) =>
   handleError(404, 'Route not found or invalid Method', res)
 );
 
-const PORT = 3000;
+const PORT = 5000;
 app.set('port', PORT || 3102);
 const server = app.listen(app.get('port'), () => {
   logger.info(`app running 🚀 → PORT ${server.address().port}`);
