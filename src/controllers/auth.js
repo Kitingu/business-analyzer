@@ -42,7 +42,7 @@ export const signup = async (req, res) => {
     if (user) {
       if (compareHash(password, user.password)) {
         const token = encodeToken(
-          createPayload(user.firstname, user.email, user.isAgent, user.isAdmin)
+          createPayload(user.email,user.isAdmin)
         );
         return handleSuccess(200, "logged in successfully",res, token);
       }

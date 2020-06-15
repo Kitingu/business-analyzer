@@ -4,6 +4,7 @@ import ErrorHandler from './src/utils/error-handler';
 import {handleError,handleSuccess} from './src/utils/response'
 import authRoutes from './src/routes/auth'
 import fileRoutes from './src/routes/files';
+import businessRoutes from './src/routes/business';
 import logger from './src/utils/logger';
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use('/api/v1',authRoutes)
 app.use('/api/v1', fileRoutes);
+app.use('/api/v1', businessRoutes);
 
 app.use((req, res) =>
   handleError(404, 'Route not found or invalid Method', res)
