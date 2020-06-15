@@ -10,8 +10,8 @@ const app = express();
 
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(authRoutes)
-app.use(fileRoutes);
+app.use('/api/v1',authRoutes)
+app.use('/api/v1', fileRoutes);
 
 app.use((req, res) =>
   handleError(404, 'Route not found or invalid Method', res)
